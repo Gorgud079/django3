@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from woman import constanta
-from .models import Woman
+from .models import Woman, Category
 
 def index(request):
     post = Woman.objects.all()
-    return render(request, 'woman/index.html', {'post': post, 'menu': constanta.menu, 'title': 'Главная'})
+    cats = Category.objects.all()
+
+    context = {
+        'post': post,
+        'cats': cats,
+        'menu': constanta.menu,
+        'title': 'Главная страница',
+        'cat_selected': 0,
+    }
+    return render(request, 'woman/index.html', context=context)
 
 def about(request):
     return render(request, 'woman/about.html', {'menu': constanta.menu, 'title': 'О нас'})
@@ -21,3 +30,29 @@ def archive(request, year):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена!!</h1>')
+
+def addpage(request):
+    return HttpResponse('Добавление статьи')
+
+def contact(request):
+    return HttpResponse('<h1>Обратная связь</h1>')
+
+def login(request):
+    return HttpResponse('Авторизация')
+
+def show_page(request, post_id):
+    return HttpResponse(f"Отображение статьи {post_id}")
+
+def show_category(request, cat_id):
+    post = Woman.objects.filter(cat_id=cat_id)
+    cats = Category.objects.all()
+
+
+    context = {
+        'post': post,
+        'cats': cats,
+        'menu': constanta.menu,
+        'title': 'Отображение по рубрикам',
+        'cat_selected': cat_id,
+    }
+    return render(request, 'woman/index.html', context=context)
