@@ -5,12 +5,8 @@ from .models import Woman, Category
 
 def index(request):
     post = Woman.objects.all()
-    cats = Category.objects.all()
-
     context = {
         'post': post,
-        'cats': cats,
-        'menu': constanta.menu,
         'title': 'Главная страница',
         'cat_selected': 0,
     }
@@ -45,13 +41,8 @@ def show_page(request, post_id):
 
 def show_category(request, cat_id):
     post = Woman.objects.filter(cat_id=cat_id)
-    cats = Category.objects.all()
-
-
     context = {
         'post': post,
-        'cats': cats,
-        'menu': constanta.menu,
         'title': 'Отображение по рубрикам',
         'cat_selected': cat_id,
     }

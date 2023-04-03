@@ -1,12 +1,30 @@
 <details open><summary></summary>
 {% for c in cats %}
-
 {% if c.pk == cat_selected %}
 <li class="selected">{{ c.name }}</li>
 {% else %}
-
 <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
-
 {% endif %}
 {% endfor %}
     </details>
+
+<!--<details open><summary></summary>-->
+<!--{% for c in cats %}-->
+<!--{% if c.pk == cat_selected %}-->
+<!--<li class="selected">{{ c.name }}</li>-->
+<!--    <details onclose><summary></summary>-->
+<!--        {% for w in wo %}-->
+<!--<li><a href="{{ c.get_absolute_url }}">{{ w.title }}</a></li>-->
+<!--        {% endfor %}-->
+<!--    </details>-->
+<!--{% else %}-->
+<!--<li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>-->
+<!--    <details onclose><summary></summary>-->
+<!--        {% for w in wo2 %}-->
+<!--<li><a href="{{ c.get_absolute_url }}">{{ w.title }}</a></li>-->
+<!--        {% endfor %}-->
+<!--    </details>-->
+<!--{% endif %}-->
+
+<!--{% endfor %}-->
+<!--    </details>-->

@@ -10,5 +10,6 @@ urlpatterns = [
     path('category/<int:cat_id>/', show_category, name='category'),
     path('post/<int:post_id>/', show_page, name='post'),
     path('woman/<slug:cat>/', categories),
-    re_path(r'^archive/(?P<year>[0-9]{4})/', archive)
+    path('archive/<int:year>/', archive),
+    # re_path(r'^archive/(?P<year>[0-9]{4})/', archive)
 ]
